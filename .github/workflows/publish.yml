@@ -15,7 +15,7 @@ jobs:
 
     - name: Publish app
       run: dotnet publish -c Release
-
+#
     - name: Rewrite base href
       uses: Homepage/ghaction-rewrite-base-href@v1
       with:
