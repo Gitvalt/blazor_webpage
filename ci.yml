@@ -20,7 +20,7 @@ jobs:
       uses: Homepage/ghaction-rewrite-base-href@v1
       with:
         html_path: ${{ env.PUBLISH_DIR }}/index.html
-        base_href: /blazor_portfolio/
+        base_href: /blazor_webpage/
 
     - name: GitHub Pages
       if: success()
@@ -29,4 +29,4 @@ jobs:
         target_branch: gh-pages
         build_dir: ${{ env.PUBLISH_DIR }}
       env:
-        GITHUB_TOKEN: ${{ secrets.deploy_token }}
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
