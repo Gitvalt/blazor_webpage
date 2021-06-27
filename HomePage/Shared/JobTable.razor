@@ -1,0 +1,39 @@
+﻿@using SharedModels
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<App> localizer
+
+@if (Experiences?.Any() ?? false)
+{
+    <div class="container profile_item">
+        <div class="row">
+            <div class="col row_header">@localizer["Company"]</div>
+            <div class="col row_header">@localizer["Title"]</div>
+            <div class="col row_header">@localizer["Duration"]</div>
+        </div>
+        @foreach (var item in (Experiences ?? new Experience[] { }).OrderByDescending(i => i.Start))
+        {
+            <div class="row">
+                <div class="col">@item.Company</div>
+                <div class="col">@item.Title</div>
+
+                @if (item.End.HasValue)
+                {
+                    <div class="col">@item.Start.ToString() - @item.End.Value.ToString()</div>
+                }
+                else
+                {
+                    <div class="col">
+                        @item.Start.ToString()
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public SharedModels.Experience[] Experiences { get; set; }
+
+}

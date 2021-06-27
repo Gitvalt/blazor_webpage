@@ -1,0 +1,183 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+$light_border: #1f1f1f;
+$light_page_background: #ffffff;
+$light_navbar_color: #5c6b73;
+$light_navbar_button_color: #c2dfe3;
+$light_content_color: #c2dfe3;
+$light_font_color: #1f1f1f;
+
+$dark_border: #1f1f1f;
+$dark_page_background: #1f1f1f;
+$dark_navbar_color: #5c6b73;
+$dark_navbar_button_color: #c2dfe3;
+$dark_content_color: #5c6b73;
+$dark_font_color: #e0fbfc;
+
+@mixin body {
+    margin: 20px;
+}
+
+@mixin custom_nav {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: block;
+    float: left;
+}
+
+@mixin custom_nav_button {
+    margin: 0;
+    display: block;
+    float: left;
+    width: 200px;
+}
+
+@mixin custom_content {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1em;
+    padding-top: 1.5em;
+    display: block;
+    float: left;
+}
+
+
+@mixin custom_footer {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10px;
+    display: block;
+    padding: 10px;
+    margin-bottom: 1em;
+    float: left;
+}
+
+.dark {
+
+    body {
+        @include body;
+        color: $dark_font_color;
+        background-color: $dark_page_background;
+    }
+
+    .custom_nav {
+        @include custom_nav;
+        background-color: $dark_navbar_color;
+    }
+
+    .custom_nav button {
+        @include custom_nav_button;
+        background-color: $dark_navbar_button_color;
+    }
+
+    .custom_content {
+        @include custom_content;
+        background-color: $dark_content_color;
+        border: 1px solid $dark_border;
+    }
+
+    .custom_footer {
+        @include custom_footer;
+        background-color: $dark_content_color;
+        border: 1px solid $dark_border;
+    }
+
+    .theme_button {
+        background-color: $dark_content_color;
+    }
+}
+
+.light {
+    body {
+        @include body;
+        color: $light_font_color;
+        background-color: $light_page_background;
+    }
+
+    .custom_nav {
+        @include custom_nav;
+        background-color: $light_navbar_color;
+    }
+
+    .custom_nav button {
+        @include custom_nav_button;
+        background-color: $light_navbar_button_color;
+    }
+
+    .custom_content {
+        @include custom_content;
+        background-color: $light_content_color;
+        border: 1px solid $light_border;
+    }
+
+    .custom_footer {
+        @include custom_footer;
+        background-color: $light_content_color;
+        border: 1px solid $light_border;
+    }
+
+    .theme_button {
+        background-color: $light_content_color;
+    }
+}
+
+h2 {
+    text-size-adjust:auto;
+}
+
+.locale_select {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    width: 200px;
+    align-self: center;
+    display: flex;
+}
+
+.profile_img {
+    width: 100%;
+    margin: auto;
+    float:left;
+    height:auto;
+    padding:0;
+    display:block;
+}
+
+.small_logo {
+    width: 50px;
+    height: 50px;
+    color: darkcyan;
+}
+
+.small_logo:hover {
+    color: darkblue;
+}
+
+.small_logo_container{
+   align-self:center;
+   display:block;
+}
+.small_logo_link {
+    font-size: 50px;
+}
+
+.small_logo_title_v {
+    text-align: center;
+    font-display:block;
+}
+
+.profile_item {
+    margin-bottom: 3em;
+}
+
+.education_row {
+    margin-bottom: 20px;
+}
+
+.row_header {
+    font-weight:bold;
+}
+

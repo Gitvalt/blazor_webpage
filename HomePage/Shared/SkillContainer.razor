@@ -1,0 +1,22 @@
+﻿@using SharedModels
+
+@if (Skill != null)
+{
+    <div class="@SkillBoxClasses">
+        <h3>@Skill.Type</h3>
+        <ul>
+            @foreach (var value in (Skill?.Values ?? new string[] { }))
+            {
+                <li>@value</li>
+            }
+        </ul>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public SharedModels.Skill Skill { get; set; }
+
+    [Parameter]
+    public string SkillBoxClasses { get; set; }
+}

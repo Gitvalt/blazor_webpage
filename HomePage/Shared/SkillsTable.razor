@@ -1,0 +1,17 @@
+﻿@using SharedModels
+
+@if (Skills?.Any() ?? false)
+{
+    <div class="d-flex flex-row justify-content-around flex-wrap profile_item">
+        @foreach (var skillGroup in (Skills ?? new Skill[] { }))
+        {
+            <SkillContainer Skill="@skillGroup" SkillBoxClasses="p-2" />
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public SharedModels.Skill[] Skills { get; set; }
+
+}

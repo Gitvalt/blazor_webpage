@@ -1,0 +1,197 @@
+{
+  "locale": "fi",
+  "name": "Valtteri Seuranen",
+  "email": "valtteri.seuranen@gmail.com",
+  "profile_image": {
+    "path": "images/person_profile.jpg"
+  },
+  "links": [
+    {
+      "title": "Gitlab",
+      "logo": {
+        "path": "fab fa-gitlab",
+        "alt": "Gitlab",
+        "is_icon": true,
+        "link": "https://gitlab.com/gitvalt"
+      }
+    },
+    {
+      "title": "Github",
+      "logo": {
+        "path": "fab fa-github",
+        "is_icon": true,
+        "alt": "Github",
+        "link": "https://github.com/gitvalt"
+      }
+    },
+    {
+      "title": "LinkedIn",
+      "logo": {
+        "path": "fab fa-linkedin",
+        "is_icon": true,
+        "alt": "LinkedIn",
+        "link": "https://fi.linkedin.com/in/valtteri-seuranen-mainpage"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "type": "Palvelin teknologiat",
+      "values": [
+        "ASP.NET",
+        "Azure Service Fabric",
+        "React JS"
+      ]
+    },
+    {
+      "type": "Sulautettu ohjelmointi",
+      "values": [
+        "Android",
+        "Xamarin & Xamarin Forms",
+        "Wear OS",
+        "Tizen OS"
+      ]
+    },
+    {
+      "type": "Ohjelmointikielet",
+      "values": [
+        "C#",
+        "Go",
+        "C",
+        "Haskell -perusteet",
+        "Javascript"
+      ]
+    }
+  ],
+  "experiences": [
+    {
+      "company": "Iotas Oy",
+      "ends": 2021,
+      "starts": 2018,
+      "title": "Harjoittelija"
+    },
+    {
+      "company": "Iotas Oy",
+      "ends": null,
+      "starts": 2021,
+      "title": "Sovellusarkkitehti"
+    }
+  ],
+  "educations": [
+    {
+      "degree": "Tieto- ja viestintätekniikan perustutkinto, Datanomi, Käytön tuki",
+      "desc": "Ammattillinen pätevyys tieto- ja viestintäteknologioista.",
+      "duration": "2012 - 2015",
+      "loc": "Jyväskylä",
+      "order": 0,
+      "school": "Jyväskylän ammattiopisto (JAO)"
+    },
+    {
+      "degree": "Ylioppilastutkinto",
+      "desc": "Ylioppilastutkinto suoritettu osana kaksoistutkintoa, joka suoritettiin ammattillisen koulutuksen ohella.",
+      "duration": "2012 - 2015",
+      "loc": "Jyväskylä",
+      "order": 1,
+      "school": "Jyväskylä Lukio"
+    },
+    {
+      "degree": "Tieto- ja viestintätekniikan tutkinto-ohjelma",
+      "desc": "Tieto- ja viestintätekniikan tutkinto-ohjelma",
+      "duration": "2016 - 2021",
+      "loc": "Jyväskylä",
+      "order": 2,
+      "school": "Jyväskylä Ammattikorkeakoulu (JAMK)"
+    }
+  ],
+  "Projects": [
+    {
+      "Course": "Ei osana kurssia",
+      "desc": "Luotiin portfolio verkkosivu React JS komponenteista, jotka pakattiin tyylitiedostojen kanssa webpack:ia käyttäen. Verkkosivu luotiin paikaksi, josta aikaisempien töiden esittäminen olisi mahdollista.\nVerkkosivun tyyli luotiin SASS:illa, jotta css muuttujien käyttäminen olisi mahdollista kaikista yleisimmillä selaimilla.",
+      "DevGroupSize": "1",
+      "Header_Title": "Portfolio opiskelijasivu",
+      "HostSite": "Gitlab",
+      "Images": [
+        "assets/projects/student-portfolio-v4.png"
+      ],
+      "Link": "https://gitlab.com/gitvalt/PortfolioWebpage",
+      "Link_Title": "Portfolio verkkosivu",
+      "ProjectType": "Henkilökohtainen",
+      "YearCreated": "2018"
+    },
+    {
+      "Course": "Ei osana kurssia",
+      "desc": "Kehitettiin pieni galleria react-komponentti portfoliota varten. Kehityksessä käytetty React, Bootstrap, Sass, Coffeescript...",
+      "DevGroupSize": "1",
+      "Header_Title": "Javascript, React galleria",
+      "HostSite": "Gitlab",
+      "Images": [
+        "assets/projects/gallery_js.png"
+      ],
+      "Link": "https://gitlab.com/gitvalt/JavascriptGallery",
+      "Link_Title": "Gallery js",
+      "ProjectType": "Henkilökohtainen",
+      "YearCreated": "2018"
+    },
+    {
+      "Course": "Sulautettu ohjelmointi",
+      "desc": "Kehitetty C:llä robottiautoon ohjain piirilevyn hallitsemiseksi",
+      "DevGroupSize": "2",
+      "Header_Title": "Sulautettu ohjelmointi: robottiauto",
+      "HostSite": "Gitlab",
+      "Images": [
+        "assets/projects/RoboCar.jpg"
+      ],
+      "Link": "https://gitlab.com/gitvalt/robottiauto",
+      "Link_Title": "Robottiauto ohjain",
+      "ProjectType": "Harjoitustyö",
+      "YearCreated": "2017"
+    },
+    {
+      "Course": "Web ohjelmointi & Web palvelinohjelmointi",
+      "desc": "Verkkokalenteri harjoitustyö 'Webpalvelinohjelmointi' kurssia varten.",
+      "DevGroupSize": "3",
+      "Header_Title": "Javascript Verkkokalenteri",
+      "HostSite": "Github",
+      "Images": [],
+      "Link": "https://github.com/Gitvalt/Webpalvelinharjoitustyo",
+      "Link_Title": "Verkkokalenteri",
+      "ProjectType": "Harjoitustyö",
+      "YearCreated": "2016"
+    },
+    {
+      "Course": "Mobiili ohjelmointi",
+      "desc": "Luotiin pieni mobiili aplikaatio Appcelerator Titaniumilla.",
+      "DevGroupSize": "2",
+      "Header_Title": "Appcelerator titanium tutkimusprojekti",
+      "HostSite": "Github",
+      "Images": [
+        "assets/projects/titanium_0.png",
+        "assets/projects/titanium_1.png",
+        "assets/projects/titanium_2.png",
+        "assets/projects/titanium_3.png"
+      ],
+      "Link": "https://github.com/Gitvalt/Appcelerator_Titanium_Demo",
+      "Link_Title": "Titanium mobiili tutkimus",
+      "ProjectType": "Tutkimustyö",
+      "YearCreated": "2017"
+    },
+    {
+      "Course": "Android ohjelmointi & Mobiiliprojekti",
+      "desc": "Luotiin Android sovellus, joka käyttää puhelimen bluetooth-yhteyttä ulkoisen valokuvakehyksen hallitsemiseen. Valokuvakehys ohjelmoitu Python-ohjelmointikielellä.",
+      "DevGroupSize": "2",
+      "Header_Title": "Android bluetooth valokuvakehys",
+      "HostSite": "Github",
+      "Images": [
+        "assets/projects/photoframe_0.png",
+        "assets/projects/photoframe_1.png",
+        "assets/projects/photoframe_2.png",
+        "assets/projects/photoframe_3.png",
+        "assets/projects/photoframe_4.png"
+      ],
+      "Link": "https://github.com/Gitvalt/Bluetooth_Mobile_Project",
+      "Link_Title": "Bluetooth valokuvakehys",
+      "ProjectType": "Harjoitustyö",
+      "YearCreated": "2017"
+    }
+  ]
+}

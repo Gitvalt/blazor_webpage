@@ -1,0 +1,69 @@
+﻿@using SharedModels;
+
+@if (Value != null)
+{
+    <div class="@ContainerClassName">
+        @if (Value.HasHyperlink)
+        {
+            <a @attributes="LinkAttributes">
+
+                @if (Value.IsIcon)
+                {
+                    <i class="@ImgClassName @Value.Path"></i>
+                }
+                else
+                {
+                    <img class="@ImgClassName" src="@Value.Path" alt="@Value.Alt" />
+                }
+            </a>
+        }
+        else
+        {
+            @if (Value.IsIcon)
+            {
+                <i class="@ImgClassName @Value.Path"></i>
+            }
+            else
+            {
+                <img class="@ImgClassName" src="@Value.Path" alt="@Value.Alt" />
+            }
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public Image Value { get; set; }
+
+    [Parameter]
+    public bool OpenInNewTab { get; set; }
+
+    [Parameter]
+    public string ImgClassName { get; set; }
+
+    [Parameter]
+    public string ContainerClassName { get; set; }
+
+    [Parameter]
+    public string LinkClassName { get; set; }
+    
+    private Dictionary<string, object> LinkAttributes
+    {
+        get
+        {
+            Dictionary<string, object> attr = new Dictionary<string, object>();
+
+            if(string.IsNullOrEmpty(LinkClassName) == false)
+                attr.Add("class", LinkClassName);
+
+            if (string.IsNullOrEmpty(@Value?.Hyperlink) == false)
+                attr.Add("href", @Value.Hyperlink);
+
+            if (OpenInNewTab)
+                attr.Add("target", "_blank");
+
+            return attr;
+        }
+        set { }
+    }
+}

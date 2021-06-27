@@ -1,0 +1,91 @@
+﻿@page "/"
+@using SharedModels
+@using Microsoft.Extensions.Localization
+
+@inject HttpClient Http
+@inject Services.LocalJSCallerManager localeManager
+@inject Services.ContentLocaleService contentLocaleService
+@inject IStringLocalizer<App> localizer
+
+<div class="container">
+    @if(_dataLoaded == false)
+    {
+        <p>Loading...</p>
+    }
+    else if (localized_data != null && localized_data.HasError)
+    {
+        <ErrorDialog LocalizedError="@localized_data.Error.LocalizedError" />
+    }
+    else if (localized_data == null)
+    {
+        <ErrorDialog LocalizedError="@localizer["LoadingFailed"]" />
+    }
+    else
+    {
+        <div class="row">
+
+            @*<ImageView Value="@localized_data.ProfileImage" ContainerClassName="col-md-3" ImgClassName="profile_img" />*@
+            
+            <div class="col content_box">
+                <h1>@localized_data.Name</h1>
+                <LinkTable ExternalAliases="@localized_data.ExternalLinks" UseHorizontalTable="true" IgnoreHeaders="true" />
+                
+                <h2>@localizer["Experience"]</h2>
+                <JobTable Experiences="@localized_data.Experiences" />
+                
+                <h2>@localizer["Education"]</h2>
+                <EducationTable Educations="@localized_data.Educations" />
+                
+                <h2>@localizer["Skills"]</h2>
+                <SkillsTable Skills="@localized_data.Skills" />
+            </div>
+        </div>
+    }
+</div>
+
+@functions {
+    private ProfileContentModel localized_data;
+
+    private bool _dataLoaded;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            if (contentLocaleService == null)
+            {
+                localized_data = new ProfileContentModel()
+                {
+                    Error = new ErrorModel("Service not available"),
+                };
+            }
+
+            var locale = await localeManager.GetLocale();
+            var request = await contentLocaleService.GetContentForContext<ProfileContentModel>(Http, locale);
+
+            if (request.HasError)
+            {
+                localized_data = new ProfileContentModel() { Error = new ErrorModel(request.Error) };
+            }
+            else if (request.Content == default(ProfileContentModel))
+            {
+                localized_data = new ProfileContentModel() { Error = new ErrorModel(localizer.GetString("ContentLoadingFailed")) };
+            }
+            else
+            {
+                localized_data = request.Content;
+            }
+        }
+        catch(Exception e)
+        {
+            localized_data = new ProfileContentModel()
+            {
+                Error = new ErrorModel(string.Format(localizer["UnexpectedErrorFormat"], $"{e.Message}, {e.StackTrace}")),
+            };
+        }
+        finally
+        {
+            _dataLoaded = true;
+        }
+    }
+}

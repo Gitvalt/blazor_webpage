@@ -1,0 +1,63 @@
+﻿@using System.Globalization;
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<App> localizer
+@inject Services.LocalJSCallerManager locale_manager
+@inject IJSRuntime js_service
+
+<div class="custom_nav d-flex flex-row flex-wrap">
+    <div class="p-2">
+        <button @onclick="OnThemeSwitch" class="theme_button">@localizer["ChangeTheme"]</button>
+    </div>
+    <div class="p-2">
+        <select class="locale_select" @bind="SelectedLocale">
+            <option value="fi">@localizer["Fi"]</option>
+            <option value="en">@localizer["En"]</option>
+        </select>
+    </div>
+</div>
+
+@functions {
+
+    private bool _isDarkTheme { get; set; }
+    private string _locale { get; set; }
+    private string _selected { get; set; }
+
+    public string SelectedLocale
+    {
+        get => _locale;
+        set { OnLocaleChanged(value); }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var _theme = await locale_manager.GetRecordedTheme();
+
+        _isDarkTheme = _theme == "dark";
+        _locale = await locale_manager.GetLocale();
+    }
+
+    async void OnThemeSwitch()
+    {
+        await locale_manager.SwitchTheme();
+    }
+
+    async void OnLocaleChanged(string locale)
+    {
+        string language = "";
+
+        switch (locale)
+        {
+            case "en":
+                language = "en";
+                break;
+
+            default:
+            case "fi":
+                language = "fi";
+                break;
+        }
+
+        await locale_manager.SetAndRefreshLocale(language);
+    }
+} 
