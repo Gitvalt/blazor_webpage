@@ -1,32 +1,37 @@
-name: DeployToGitHubPages
-env:
-  PUBLISH_DIR: bin/Release/netstandard2.1/publish/wwwroot
-
-# Controls when the action will run
-on:
-  push:
-    branches: [ master ]
+name: 'Publish application'
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+        # Checkout the code
+        - uses: actions/checkout@v2
 
-    - name: Publish app
-      run: dotnet publish -c Release
-#
-    - name: Rewrite base href
-      uses: Homepage/ghaction-rewrite-base-href@v1
-      with:
-        html_path: ${{ env.PUBLISH_DIR }}/index.html
-        base_href: /blazor_webpage/
+        # Install .NET Core SDK
+        - name: Setup .NET Core
+          uses: actions/setup-dotnet@v1
+          with:
+            dotnet-version: 3.1.x
 
-    - name: GitHub Pages
-      if: success()
-      uses: crazy-max/ghaction-github-pages@v1.5.1
-      with:
-        target_branch: gh-pages
-        build_dir: ${{ env.PUBLISH_DIR }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        # Run tests
+        - name: Test
+          run: dotnet test
+
+        # Generate the website
+        - name: Publish
+          run: dotnet publish myapp.csproj --configuration Release
+
+        # Publish the website
+        - name: GitHub Pages action
+          if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
+          uses: peaceiris/actions-gh-pages@v3.6.1
+          with:
+            github_token: ${{ secrets.DEPLOY_TOKEN }}
+            publish_branch: gh-pages
+            publish_dir: bin/Release/netstandard2.1/publish/wwwroot
+            allow_empty_commit: false
+            keep_files: false
+            force_orphan: true
+            # TODO uncomment the following line if you have a custom domain name
+            # cname: demo.meziantou.net
