@@ -25,24 +25,18 @@ jobs:
         - name: Publish
           run: dotnet publish HomePage/HomePage.csproj --configuration Release
 
-        - name: Publish -2
-          run: ls
-
-        - name: Publish -3
-          run: ls HomePage
-
         - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
           run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/" \/>/g' HomePage/wwwroot/index.html
 
         # Publish the website
         - name: GitHub Pages action
-          if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
+          if: ${{ github.ref == 'refs/heads/main' }} # Publish only when the push is on master
           uses: peaceiris/actions-gh-pages@v3.6.1
           with:
             github_token: ${{ secrets.DEPLOY_TOKEN }}
             publish_branch: gh-pages
             publish_dir: bin/Release/netstandard2.1/publish/wwwroot
-            allow_empty_commit: false
+            allow_empty_commit: true
             keep_files: false
             force_orphan: true
             # TODO uncomment the following line if you have a custom domain name
