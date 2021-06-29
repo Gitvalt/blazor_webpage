@@ -19,6 +19,9 @@ jobs:
           run: dotnet test
 
         # Generate the website
+        - name: Publish -1
+          run: ls
+
         - name: Publish
           run: dotnet publish HomePage/HomePage.csproj --configuration Release
 
