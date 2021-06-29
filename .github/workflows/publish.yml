@@ -39,7 +39,6 @@ jobs:
       
         # Publish the website
         - name: GitHub Pages action
-          if: ${{ github.ref == 'refs/heads/main' }} # Publish only when the push is on master
           uses: peaceiris/actions-gh-pages@v3.6.1
           with:
             github_token: ${{ secrets.DEPLOY_TOKEN }}
