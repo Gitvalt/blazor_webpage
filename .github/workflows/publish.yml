@@ -1,9 +1,11 @@
 name: 'Publish application'
-on: push
+on: 
+  push:
+    branches: [ source ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
     steps:
         # Checkout the code
         - uses: actions/checkout@v2
@@ -39,6 +41,7 @@ jobs:
         - name: Publish
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           run: dotnet publish blazor_webpage.csproj --configuration Release
 =======
           run: dotnet publish HomePage.csproj --configuration Release
@@ -51,16 +54,37 @@ jobs:
         - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
           run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/" \/>/g' HomePage/wwwroot/index.html
 >>>>>>> origin/master
+=======
+          run: dotnet publish HomePage/HomePage.csproj --configuration Release
 
+        #- name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
+        # run: sed -i 's/<base href="\/"\/>/<base href="\/blazor_webpage\/HomePage\/wwwroot\/" \/>/g' HomePage/wwwroot/index.html
+>>>>>>> refs/remotes/origin/source
+
+        - name: Publish -1
+          run: ls HomePage/bin
+        
+        # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+        - name: Add .nojekyll file
+          run: touch HomePage/wwwroot/.nojekyll
+      
         # Publish the website
         - name: GitHub Pages action
+<<<<<<< HEAD
           if: ${{ github.ref == 'refs/heads/main' }} # Publish only when the push is on main
+=======
+>>>>>>> refs/remotes/origin/source
           uses: peaceiris/actions-gh-pages@v3.6.1
           with:
             github_token: ${{ secrets.DEPLOY_TOKEN }}
             publish_branch: gh-pages
+<<<<<<< HEAD
             publish_dir: bin/Release/netstandard2.1/publish/wwwroot
             allow_empty_commit: true
+=======
+            publish_dir: HomePage/bin/Release/netstandard2.1/publish/wwwroot
+            allow_empty_commit: false
+>>>>>>> refs/remotes/origin/source
             keep_files: false
             force_orphan: true
             # TODO uncomment the following line if you have a custom domain name
