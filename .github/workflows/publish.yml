@@ -26,7 +26,7 @@ jobs:
           run: dotnet publish HomePage/HomePage.csproj --configuration Release
 
         - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
-          run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/HomePage\/wwwroot\/" \/>/g' HomePage/wwwroot/index.html
+          run: sed -i 's/<base href="\/"\/>/<base href="\/blazor_webpage\/HomePage\/wwwroot\/" \/>/g' HomePage/wwwroot/index.html
 
         - name: Publish -1
           run: ls HomePage/bin
