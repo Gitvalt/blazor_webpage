@@ -13,18 +13,26 @@ jobs:
           uses: actions/setup-dotnet@v1
           with:
             dotnet-version: 3.1.x
-
+#asd
         # Run tests
         - name: Test
           run: dotnet test
 
         # Generate the website
+        - name: Publish -1
+          run: ls
+
         - name: Publish
-          run: dotnet publish blazor_webpage.csproj --configuration Release
+          run: dotnet publish HomePage/HomePage.csproj --configuration Release
+
+        #release == HomePage
+
+        - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
+          run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/" \/>/g' HomePage/wwwroot/index.html
 
         # Publish the website
         - name: GitHub Pages action
-          if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
+          if: ${{ github.ref == 'refs/heads/main' }} # Publish only when the push is on main
           uses: peaceiris/actions-gh-pages@v3.6.1
           with:
             github_token: ${{ secrets.DEPLOY_TOKEN }}
