@@ -26,11 +26,15 @@ jobs:
           run: dotnet publish HomePage/HomePage.csproj --configuration Release
 
         - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
-          run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/" \/>/g' HomePage/wwwroot/index.html
+          run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/HomePage\/wwwroot\/" \/>/g' HomePage/wwwroot/index.html
 
         - name: Publish -1
           run: ls HomePage/bin
-
+        
+        # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+        - name: Add .nojekyll file
+          run: touch release/wwwroot/.nojekyll
+      
         # Publish the website
         - name: GitHub Pages action
           if: ${{ github.ref == 'refs/heads/main' }} # Publish only when the push is on master
