@@ -38,7 +38,7 @@ jobs:
             github_token: ${{ secrets.DEPLOY_TOKEN }}
             publish_branch: gh-pages
             publish_dir: bin/Release/netstandard2.1/publish/wwwroot
-            allow_empty_commit: false
+            allow_empty_commit: true
             keep_files: false
             force_orphan: true
             # TODO uncomment the following line if you have a custom domain name
