@@ -28,6 +28,9 @@ jobs:
         - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
           run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/" \/>/g' HomePage/wwwroot/index.html
 
+        - name: Publish -1
+          run: ls HomePage/bin
+
         # Publish the website
         - name: GitHub Pages action
           if: ${{ github.ref == 'refs/heads/main' }} # Publish only when the push is on master
@@ -35,7 +38,7 @@ jobs:
           with:
             github_token: ${{ secrets.DEPLOY_TOKEN }}
             publish_branch: gh-pages
-            publish_dir: bin/HomePage/netstandard2.1/publish/wwwroot
+            publish_dir: bin/Release/netstandard2.1/publish/wwwroot
             allow_empty_commit: true
             keep_files: false
             force_orphan: true
