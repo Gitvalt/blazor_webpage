@@ -29,10 +29,10 @@ jobs:
           run: ls
 
         - name: Publish -3
-          run: ls release
+          run: ls HomePage
 
         - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
-          run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/" \/>/g' release/HomePage/wwwroot/index.html
+          run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/" \/>/g' HomePage/wwwroot/index.html
 
         # Publish the website
         - name: GitHub Pages action
