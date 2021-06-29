@@ -22,6 +22,9 @@ jobs:
         - name: Publish
           run: dotnet publish HomePage/HomePage.csproj --configuration Release
 
+        - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
+          run: sed -i 's/<base href="\/" \/>/<base href="\/blazor_webpage\/" \/>/g' release/wwwroot/index.html
+
         # Publish the website
         - name: GitHub Pages action
           if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
