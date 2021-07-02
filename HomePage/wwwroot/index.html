@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Homepage</title>
-    <base href="/blazor_webpage/HomePage/wwwroot/" />
+    <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.min.css" rel="stylesheet" />
 </head>
@@ -21,30 +21,23 @@
     <script src="ajax_min.js"></script>
     <script src="custom_helpers.js"></script>
 
-            <!-- Start Single Page Apps for GitHub Pages -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.7.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/8.7.0/firebase-analytics.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
     <script type="text/javascript">
-        
-        (function (l) {
-            if (l.search) {
-                var q = {};
-                l.search.slice(1).split('&').forEach(function (v) {
-                    var a = v.split('=');
-                    q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-                });
-                if (q.p !== undefined) {
-                    window.history.replaceState(null, null,
-                        l.pathname.slice(0, -1) + (q.p || '') +
-                        (q.q ? ('?' + q.q) : '') +
-                        l.hash
-                    );
-                }
-            }
-        }(window.location))
-        
+
         var recordedTheme = readThemeRecord();
 
-        if (recordedTheme != null)
+        if (recordedTheme != null) {
             setTheme(recordedTheme);
+        }
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
 
