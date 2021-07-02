@@ -1,0 +1,7 @@
+﻿https://swimburger.net/blog/dotnet/how-to-deploy-blazor-webassembly-to-firebase-hosting
+
+dotnet publish -c Release -o release HomePage.csproj
+firebase serve --only hosting
+firebase deploy
+
+https://gitvalt-personal-portfolio.web.app
