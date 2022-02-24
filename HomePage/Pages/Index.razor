@@ -1,87 +1,105 @@
 ﻿@page "/"
 @using SharedModels
+@using Services
 @using Microsoft.Extensions.Localization
 
-@inject HttpClient Http
-@inject Services.LocalJSCallerManager localeManager
-@inject Services.ContentLocaleService contentLocaleService
+@inject ContentService contentService;
 @inject IStringLocalizer<App> localizer
 
-<div class="container">
-    @if(_dataLoaded == false)
+<div class="outerContainer">
+    @if (_dataLoaded == false)
     {
-        <p>Loading...</p>
+        <p>@localizer["LoadingPrompt"]</p>
     }
     else if (localized_data != null && localized_data.HasError)
     {
-        <ErrorDialog LocalizedError="@localized_data.Error.LocalizedError" />
+        <HomePage.Shared.PageComponents.ErrorDialog LocalizedError="@localized_data.Error.LocalizedError" />
     }
     else if (localized_data == null)
     {
-        <ErrorDialog LocalizedError="@localizer["LoadingFailed"]" />
+        <HomePage.Shared.PageComponents.ErrorDialog LocalizedError="@localizer["LoadingFailed"]" />
     }
     else
     {
         <div class="row">
 
-            @*<ImageView Value="@localized_data.ProfileImage" ContainerClassName="col-md-3" ImgClassName="profile_img" />*@
-            
-            <div class="col content_box">
-                <h1>@localized_data.Name</h1>
-                <LinkTable ExternalAliases="@localized_data.ExternalLinks" UseHorizontalTable="true" IgnoreHeaders="true" />
-                
-                <h2>@localizer["Experience"]</h2>
-                <JobTable Experiences="@localized_data.Experiences" />
-                
-                <h2>@localizer["Education"]</h2>
-                <EducationTable Educations="@localized_data.Educations" />
-                
-                <h2>@localizer["Skills"]</h2>
-                <SkillsTable Skills="@localized_data.Skills" />
+            <HomePage.Shared.PageComponents.ImageView Value="@localized_data.ProfileImage" ContainerClassName="col-md-3" ImgClassName="profile_img" />
+            <div class="col">
+                <div class="container profileBox">
+
+                    <h1 class="container row">@localized_data.Name</h1>
+
+                    <div class="container row">
+                        <h2>@localizer["Common"]</h2>
+                        @if (Descriptions?.Any() ?? false)
+                        {
+                            @foreach (var item in Descriptions)
+                            {
+                                <p>@item</p>
+                            }
+                        }
+                    </div>
+
+                    <div class="container row">
+                        <h2>@localizer["Contacts"]</h2>
+                        <div class="container">
+                            <div class="row">
+                                <span class="col-sm-2">@(string.Format("{0}: ", localizer["Email"]))</span>
+                                <span class="col">@localized_data.Email</span>
+                            </div>
+                            @if (!linkedInUrlEmpty)
+                            {
+                                <div class="row">
+                                    <span class="col-sm-2">@(string.Format("{0}: ", "LinkedIn"))</span>
+                                    <a class="col" href=@linkedInUrl>@linkedInUrl</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="container row">
+                        <h2>@localizer["OutsideSources"]</h2>
+                        <span>@localizer["OutsideSourcesGuide"]</span>
+                        <HomePage.Shared.Components.LinkTable ExternalAliases="@localized_data.ExternalLinks" UseHorizontalTable="true" IgnoreHeaders="true" />
+                    </div>
+                </div>
             </div>
         </div>
     }
 </div>
 
 @functions {
-    private ProfileContentModel localized_data;
-
     private bool _dataLoaded;
+    private ProfileContentModel localized_data;
+    private string linkedInUrl => localized_data?.ExternalLinks.FirstOrDefault(i => i.Title.ToLower() == "linkedin")?.Logo?.Hyperlink;
+    private bool linkedInUrlEmpty => string.IsNullOrEmpty(linkedInUrl);
+
+    private string[] Descriptions
+    {
+        get
+        {
+            var tmp = localizer["ProfileDescription"]?.Value;
+
+            var splitter = @"\r\n";
+
+            if (tmp.Contains(splitter))
+            {
+                return tmp.Split(splitter);
+            }
+            else
+            {
+                return new string[] { tmp };
+            }
+        }
+        set { }
+    }
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            if (contentLocaleService == null)
-            {
-                localized_data = new ProfileContentModel()
-                {
-                    Error = new ErrorModel("Service not available"),
-                };
-            }
+            localized_data = await contentService.LoadProfileData();
 
-            var locale = await localeManager.GetLocale();
-            var request = await contentLocaleService.GetContentForContext<ProfileContentModel>(Http, locale);
-
-            if (request.HasError)
-            {
-                localized_data = new ProfileContentModel() { Error = new ErrorModel(request.Error) };
-            }
-            else if (request.Content == default(ProfileContentModel))
-            {
-                localized_data = new ProfileContentModel() { Error = new ErrorModel(localizer.GetString("ContentLoadingFailed")) };
-            }
-            else
-            {
-                localized_data = request.Content;
-            }
-        }
-        catch(Exception e)
-        {
-            localized_data = new ProfileContentModel()
-            {
-                Error = new ErrorModel(string.Format(localizer["UnexpectedErrorFormat"], $"{e.Message}, {e.StackTrace}")),
-            };
         }
         finally
         {

@@ -1,0 +1,224 @@
+﻿@page "/projects"
+
+@using SharedModels
+@using Services
+@using Models;
+@using Microsoft.Extensions.Localization
+
+@inject ContentService contentService;
+@inject AppSettings appSettings
+@inject NavigationManager NavManager
+@inject IStringLocalizer<App> localizer
+@inject LocalJSCallerManager js_service
+@inject LogService logService
+
+<div class="outerContainer">
+    @if (_dataLoaded == false)
+    {
+        <p>@localizer["LoadingPrompt"]</p>
+    }
+    else if (localized_data != null && localized_data.HasError)
+    {
+        <HomePage.Shared.PageComponents.ErrorDialog LocalizedError="@localized_data.Error.LocalizedError" />
+    }
+    else if (localized_data == null)
+    {
+        <HomePage.Shared.PageComponents.ErrorDialog LocalizedError="@localizer["LoadingFailed"]" />
+    }
+    else
+    {
+        <div class="container w-75 float-left custom-column">
+
+            <div class="row">
+                <h1>@localizer["Projects"]</h1>
+            </div>
+
+            <div class="row" hidden="@(EnableForm==false)">
+                <select class="form-control" @bind="@SelectedModeString">
+                    @foreach (var item in ViewModel.GetModesAsArray())
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <div class="container">
+
+                        @if (ViewModel.CurrentMode != ProjectsViewModel.PageMode.Add && (ViewModel?.ExistingProjects?.Any() ?? false))
+                        {
+                            @foreach (var item in ViewModel.ExistingProjects)
+                            {
+                                <div class="row sidemenu-buttons">
+                                    <button class="w-75 btn btn-dark" @onclick="()=>ItemSelected(item)">@item.Title</button>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <div class="col-xl">
+
+                    <div class="container ">
+                        <div class="row">
+                            @if (ViewModel.CurrentMode == ProjectsViewModel.PageMode.Add)
+                            {
+                                <HomePage.Shared.Forms.CreateProject OnProfileSubmit="SubmitClicked" InspectOnly="@(ViewModel.CurrentMode == ProjectsViewModel.PageMode.Inspect)" IsModifying=@(ViewModel.CurrentMode == ProjectsViewModel.PageMode.Modify) ViewModel=@ViewModel?.SelectedProject />
+                            }
+                            else if (ViewModel.SelectedProject != null && ViewModel.CurrentMode == ProjectsViewModel.PageMode.Inspect)
+                            {
+                                <HomePage.Shared.Forms.CreateProject InspectOnly="@(ViewModel.CurrentMode == ProjectsViewModel.PageMode.Inspect)" IsModifying="false" ViewModel=@ViewModel?.SelectedProject />
+                            }
+                            else if (ViewModel.SelectedProject != null && ViewModel.CurrentMode == ProjectsViewModel.PageMode.Modify)
+                            {
+                                <HomePage.Shared.Forms.CreateProject OnProfileSubmit="SubmitClicked" InspectOnly="@(ViewModel.CurrentMode == ProjectsViewModel.PageMode.Inspect)" IsModifying="true" ViewModel=@ViewModel?.SelectedProject />
+                            }
+                            else if (ViewModel?.ExistingProjects == null || ViewModel.ExistingProjects.Any() == false)
+                            {
+                                <h2>@localizer["NoContentAvailable"]</h2>
+                            }
+                        </div>
+
+                        <div class="row">
+                            @if (EnableForm && (ViewModel?.ExistingProjects?.Any() ?? false) && ViewModel.CurrentMode != ProjectsViewModel.PageMode.Inspect)
+                            {
+                                <textarea readonly style="height: 500px;" class="w-100">@(Newtonsoft.Json.JsonConvert.SerializeObject(ViewModel.ExistingProjects, Newtonsoft.Json.Formatting.Indented))</textarea>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@functions {
+
+    private const string renderComponent = "prj-gallery";
+
+    private ProfileContentModel localized_data;
+    private bool _dataLoaded;
+    private string _selectedModeString;
+
+#if DEBUG
+    private bool EnableForm = true;
+#else
+private bool EnableForm = false;
+#endif
+
+    public string SelectedModeString
+    {
+        get => _selectedModeString;
+        set
+        {
+            var @old = ViewModel.GetModes().FirstOrDefault(i => i.Value == _selectedModeString);
+            var @new = ViewModel.GetModes().FirstOrDefault(i => i.Value == value);
+
+            _selectedModeString = value;
+
+            ViewModel.CurrentMode = @new.Key;
+
+            if (ViewModel.CurrentMode == ProjectsViewModel.PageMode.Add)
+            {
+                ViewModel.SelectedProject = new ProjectWrapper();
+            }
+        }
+    }
+
+    public ProjectsViewModel ViewModel { get; set; }
+
+    private Image tmpImg { get => ViewModel.CreatingImage; set { } }
+
+    private BaseProject tmpSelected { get => ViewModel?.SelectedProject; set { } }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!appSettings.ShowProjects)
+        {
+            logService.Debug("Projects disabled. Redirecting...");
+            NavManager.NavigateTo("/");
+            return;
+        }
+
+        ViewModel = new ProjectsViewModel(localizer);
+
+        try
+        {
+            localized_data = await contentService.LoadProfileData();
+
+            ViewModel.ExistingProjects = localized_data.Projects;
+            SetPageMode(ProjectsViewModel.PageMode.Inspect);
+
+            logService.Debug(Newtonsoft.Json.JsonConvert.SerializeObject(ViewModel.ExistingProjects));
+        }
+        finally
+        {
+            _dataLoaded = true;
+        }
+    }
+
+    private void SetPageMode(ProjectsViewModel.PageMode mode)
+    {
+        ViewModel.SetPageMode(mode);
+        SelectedModeString = ViewModel.GetModes().FirstOrDefault(i => i.Key == mode).Value;
+    }
+
+    public void OnChange(ProjectsViewModel.PageMode mode)
+    {
+        SetPageMode(mode);
+
+        if (mode == ProjectsViewModel.PageMode.Add)
+        {
+            ViewModel.SelectedProject = new ProjectWrapper();
+        }
+        else if (mode == ProjectsViewModel.PageMode.Modify)
+        {
+        }
+        else
+        {
+        }
+    }
+
+    public void ItemSelected(ProjectWrapper wrapper)
+    {
+        if (ViewModel.CurrentMode != ProjectsViewModel.PageMode.Add)
+        {
+            ViewModel.SelectedProject = wrapper;
+        }
+    }
+
+    public void SubmitClicked(object data)
+    {
+        logService.Debug("Submit received");
+
+        if (ViewModel.CurrentMode == ProjectsViewModel.PageMode.Add)
+        {
+            logService.Debug(Newtonsoft.Json.JsonConvert.SerializeObject(data));
+            var i = ViewModel.ExistingProjects?.ToList() ?? new List<ProjectWrapper>();
+            i.Add((ProjectWrapper)data);
+            ViewModel.ExistingProjects = i.ToArray();
+            SetPageMode(ProjectsViewModel.PageMode.Inspect);
+            ViewModel.SelectedProject = null;
+        }
+        else if (ViewModel.CurrentMode == ProjectsViewModel.PageMode.Modify)
+        {
+            logService.Debug(Newtonsoft.Json.JsonConvert.SerializeObject(data));
+
+            var i = ViewModel.ExistingProjects?.ToList() ?? new List<ProjectWrapper>();
+
+            var old = i.FirstOrDefault(i => i.TmpID == ((ProjectWrapper)data).TmpID);
+
+            if (old != null)
+            {
+                i.Remove(old);
+                i.Add((ProjectWrapper)data);
+                ViewModel.ExistingProjects = i.ToArray();
+
+                SetPageMode(ProjectsViewModel.PageMode.Inspect);
+                ViewModel.SelectedProject = ViewModel.ExistingProjects.FirstOrDefault(i => i.TmpID == ((ProjectWrapper)data).TmpID);
+            }
+        }
+    }
+}

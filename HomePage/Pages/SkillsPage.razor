@@ -1,0 +1,49 @@
+﻿@page "/skills"
+@using SharedModels
+@using Services
+@using Microsoft.Extensions.Localization
+
+@inject ContentService contentService;
+@inject IStringLocalizer<App> localizer
+
+<div class="outerContainer">
+    @if (_dataLoaded == false)
+    {
+        <p>@localizer["LoadingPrompt"]</p>
+    }
+    else if (localized_data != null && localized_data.HasError)
+    {
+        <HomePage.Shared.PageComponents.ErrorDialog LocalizedError="@localized_data.Error.LocalizedError" />
+    }
+    else if (localized_data == null)
+    {
+        <HomePage.Shared.PageComponents.ErrorDialog LocalizedError="@localizer["LoadingFailed"]" />
+    }
+    else
+    {
+
+        <h2>@localizer["Skills"]</h2>
+        <hr />
+        <HomePage.Shared.Components.SkillsTable Skills="@localized_data.Skills" />
+    }
+</div>
+
+@functions {
+
+    private ProfileContentModel localized_data;
+
+    private bool _dataLoaded;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            localized_data = await contentService.LoadProfileData();
+
+        }
+        finally
+        {
+            _dataLoaded = true;
+        }
+    }
+}

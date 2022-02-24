@@ -2,5 +2,13 @@
   {
     "outputFile": "wwwroot/css/app.css",
     "inputFile": "wwwroot/css/app.scss"
+  },
+  {
+    "outputFile": "wwwroot/js/webpack.config.es5.js",
+    "inputFile": "wwwroot/js/webpack.config.js"
+  },
+  {
+    "outputFile": "wwwroot/js/src/project_gallery.js",
+    "inputFile": "wwwroot/js/src/project_gallery.jsx"
   }
 ]

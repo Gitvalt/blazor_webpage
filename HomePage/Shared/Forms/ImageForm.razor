@@ -1,0 +1,130 @@
+﻿@using SharedModels
+@using Services
+@using Models;
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<App> localizer
+
+<div class="project-construct-row">
+    <div class="row button-header-row">
+        <h2 class="col-auto">@localizer["Images"]</h2>
+        <button class="col-auto btn btn-primary" hidden="@HideAdditionButton" @onclick="OnImageClick">@(IsAddingImage ? "-" : "+")</button>
+    </div>
+    <div class="row">
+        <div class="container">
+
+            @if (IsAddingImage)
+            {
+                <div class="container imageContainer">
+
+                    <div class="form-group input-group">
+                        <span class="input-group-text">@localizer["PathToImage"]</span>
+                        <input class="form-control" type="text" @bind-value="@CreatingImage.Path" id="pathName" placeholder="@localizer["PathToImage"]" />
+                    </div>
+
+                    <div class="form-group input-group">
+                        <span class="input-group-text">@localizer["AlternativeName"]</span>
+                        <input class="form-control" type="text" @bind-value="@CreatingImage.Alt" id="altName" placeholder="@localizer["AlternativeName"]" />
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" @bind-value="@CreatingImage.IsIcon" id="isIconSwitch" />
+                            <label class="form-check-label" for="isIconSwitch">@localizer["IsIcon"]</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <span class="input-group-text">@localizer["Hyperlink"]</span>
+                        <input class="form-control" type="url" id="hyperlinkLabel" @bind-value="@CreatingImage.Hyperlink" placeholder="@localizer["Hyperlink"]" />
+                    </div>
+
+                    <button @onclick="OnAddImageClicked">@localizer["Submit"]</button>
+                </div>
+            }
+
+            @if (Images?.Any() ?? false)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col">@localizer["Path"]</th>
+                            <th class="col">@localizer["Name"]</th>
+                            <th class="col">@localizer["IsIcon"]</th>
+                            <th class="col">@localizer["Hyperlink"]</th>
+                            <th class="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Images ?? new Image[] { })
+                        {
+                            <tr>
+                                <td scope="row">@item?.Path</td>
+                                <td scope="row">@item?.Alt</td>
+                                <td scope="row">@(item.IsIcon ? localizer["True"] : localizer["False"])</td>
+                                <td scope="row">@(item?.Hyperlink ?? localizer["Empty"])</td>
+                                <td><button class="col-auto" hidden="@HideAdditionButton" @onclick=@(()=>OnRemoveImage(item))>-</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public EventCallback<Image[]> OnImageCollectionUpdates { get; set; }
+
+    [Parameter]
+    public bool HideAdditionButton { get; set; }
+
+    [Parameter]
+    public Image[] Images { get; set; }
+
+    public bool IsAddingImage { get; set; }
+
+    public Image CreatingImage { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Images = Images ?? new Image[] { };
+    }
+
+    public void OnImageClick()
+    {
+        CreatingImage = new Image();
+        IsAddingImage = !IsAddingImage;
+    }
+
+    public async void OnAddImageClicked()
+    {
+        if (string.IsNullOrEmpty(CreatingImage?.Alt) || string.IsNullOrEmpty(CreatingImage?.Path))
+            return;
+
+        var e = Images?.ToList() ?? new List<Image>();
+        e.Add(CreatingImage);
+        Images = e.ToArray();
+
+        CreatingImage = null;
+        IsAddingImage = false;
+
+        await OnImageCollectionUpdates.InvokeAsync(Images);
+    }
+
+    public async void OnRemoveImage(Image img)
+    {
+
+        var e = Images?.ToList() ?? new List<Image>();
+
+        var old = e.FirstOrDefault(i => i.Alt == img.Alt && i.Path == img.Path);
+        if (old != null)
+        {
+            e.Remove(old);
+            Images = e.ToArray();
+            await OnImageCollectionUpdates.InvokeAsync(Images);
+        }
+    }
+}

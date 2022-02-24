@@ -61,11 +61,38 @@ namespace HomePage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lisää.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nimi.
+        /// </summary>
+        public static string AlternativeName {
+            get {
+                return ResourceManager.GetString("AlternativeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vaihda teema.
         /// </summary>
         public static string ChangeTheme {
             get {
                 return ResourceManager.GetString("ChangeTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yleistä.
+        /// </summary>
+        public static string Common {
+            get {
+                return ResourceManager.GetString("Common", resourceCulture);
             }
         }
         
@@ -79,11 +106,38 @@ namespace HomePage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Yhteystiedot.
+        /// </summary>
+        public static string Contacts {
+            get {
+                return ResourceManager.GetString("Contacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sisällön lataaminen epäonnistui.
         /// </summary>
         public static string ContentLoadingFailed {
             get {
                 return ResourceManager.GetString("ContentLoadingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Päivämäärä.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oletus.
+        /// </summary>
+        public static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
             }
         }
         
@@ -124,6 +178,24 @@ namespace HomePage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sähköposti.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tyhjä.
+        /// </summary>
+        public static string Empty {
+            get {
+                return ResourceManager.GetString("Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Englanti.
         /// </summary>
         public static string En {
@@ -133,11 +205,38 @@ namespace HomePage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Virhe on tapahtunut.
+        /// </summary>
+        public static string ErrorOccured {
+            get {
+                return ResourceManager.GetString("ErrorOccured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Työkokemus.
         /// </summary>
         public static string Experience {
             get {
                 return ResourceManager.GetString("Experience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Työkokemus ja koulutus.
+        /// </summary>
+        public static string ExperienceAndSchool {
+            get {
+                return ResourceManager.GetString("ExperienceAndSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Epätosi.
+        /// </summary>
+        public static string False {
+            get {
+                return ResourceManager.GetString("False", resourceCulture);
             }
         }
         
@@ -160,6 +259,69 @@ namespace HomePage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ryhmän koko.
+        /// </summary>
+        public static string GroupSize {
+            get {
+                return ResourceManager.GetString("GroupSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperlinkki.
+        /// </summary>
+        public static string Hyperlink {
+            get {
+                return ResourceManager.GetString("Hyperlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperlinkin polku.
+        /// </summary>
+        public static string HyperlinkPath {
+            get {
+                return ResourceManager.GetString("HyperlinkPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperlinkin otsikko.
+        /// </summary>
+        public static string HyperlinkTitle {
+            get {
+                return ResourceManager.GetString("HyperlinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kuvat.
+        /// </summary>
+        public static string Images {
+            get {
+                return ResourceManager.GetString("Images", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tutki.
+        /// </summary>
+        public static string Inspect {
+            get {
+                return ResourceManager.GetString("Inspect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onko ikoni.
+        /// </summary>
+        public static string IsIcon {
+            get {
+                return ResourceManager.GetString("IsIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Linkki.
         /// </summary>
         public static string Link {
@@ -174,6 +336,15 @@ namespace HomePage.Resources {
         public static string LoadingFailed {
             get {
                 return ResourceManager.GetString("LoadingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ladataan....
+        /// </summary>
+        public static string LoadingPrompt {
+            get {
+                return ResourceManager.GetString("LoadingPrompt", resourceCulture);
             }
         }
         
@@ -196,11 +367,137 @@ namespace HomePage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Muokkaa.
+        /// </summary>
+        public static string Modify {
+            get {
+                return ResourceManager.GetString("Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nimi.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sisältöä ei saatavilla.
+        /// </summary>
+        public static string NoContentAvailable {
+            get {
+                return ResourceManager.GetString("NoContentAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ei löydetty.
         /// </summary>
         public static string NotFound {
             get {
                 return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ulkoiset sivustot.
+        /// </summary>
+        public static string OutsideSources {
+            get {
+                return ResourceManager.GetString("OutsideSources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voit löytää minut myös muilta sivustoilta:.
+        /// </summary>
+        public static string OutsideSourcesGuide {
+            get {
+                return ResourceManager.GetString("OutsideSourcesGuide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oma profiili.
+        /// </summary>
+        public static string OwnProfile {
+            get {
+                return ResourceManager.GetString("OwnProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rakennettu Blazor, Bootstrap, JQuery ja FontAwesome -teknologioilla..
+        /// </summary>
+        public static string PageFooterLabel {
+            get {
+                return ResourceManager.GetString("PageFooterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sivua ei löydetty.
+        /// </summary>
+        public static string PageNotFound {
+            get {
+                return ResourceManager.GetString("PageNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Haettua sivua ei löydetty tai sitä ei ole olemassa..
+        /// </summary>
+        public static string PageNotFoundPrompt {
+            get {
+                return ResourceManager.GetString("PageNotFoundPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polku.
+        /// </summary>
+        public static string Path {
+            get {
+                return ResourceManager.GetString("Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polku kuvalle.
+        /// </summary>
+        public static string PathToImage {
+            get {
+                return ResourceManager.GetString("PathToImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Henkilökohtainen.
+        /// </summary>
+        public static string Personal {
+            get {
+                return ResourceManager.GetString("Personal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minä olen ohjelmoija keskisuomesta, joka pääsääntöisesti on keskittynyt monialustaisten mobiilisovellusten ja skaalattavien mikropalveluiden kehittämiseen Microsoft Service Fabric -teknologialla. Viimeistelin vuonna 2021 insinöörinopintoni Jyväskylän ammattikorkeakoulussa, jonka aikana toimin ohjelmoijana Iotas Oy:ssa. \r\nOhjelmoijana minulla on eniten osaamista Android ja iOS -mobiilisovelluksien rakentamisesta Xamarin Form -teknologialla ja REST-API rajapintojen rakentamisesta Service Fabric mikropalvelu [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ProfileDescription {
+            get {
+                return ResourceManager.GetString("ProfileDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projektit.
+        /// </summary>
+        public static string Projects {
+            get {
+                return ResourceManager.GetString("Projects", resourceCulture);
             }
         }
         
@@ -232,11 +529,56 @@ namespace HomePage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lähetä.
+        /// </summary>
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tagi.
+        /// </summary>
+        public static string Tag {
+            get {
+                return ResourceManager.GetString("Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tagit.
+        /// </summary>
+        public static string Tags {
+            get {
+                return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Työnimike.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totta.
+        /// </summary>
+        public static string True {
+            get {
+                return ResourceManager.GetString("True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tyyppi.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         
@@ -255,6 +597,24 @@ namespace HomePage.Resources {
         public static string UnexpectedErrorHasOccured {
             get {
                 return ResourceManager.GetString("UnexpectedErrorHasOccured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Työ.
+        /// </summary>
+        public static string Work {
+            get {
+                return ResourceManager.GetString("Work", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vuosi.
+        /// </summary>
+        public static string Year {
+            get {
+                return ResourceManager.GetString("Year", resourceCulture);
             }
         }
     }

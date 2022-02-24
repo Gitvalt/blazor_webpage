@@ -1,0 +1,12 @@
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Index> localizer
+
+<div class="err-dialog">
+    <h3>@localizer["ErrorOccured"]</h3>
+    <p>@(LocalizedError ?? localizer["UnexpectedErrorHasOccured"])</p>
+</div>
+
+@code {
+    [Parameter]
+    public string LocalizedError { get; set; }
+}

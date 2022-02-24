@@ -1,0 +1,23 @@
+﻿<div>
+    @if (@ImageCollection?.Any() ?? false)
+    {
+        foreach (var item in ImageCollection)
+        {
+            <div class="container">
+                <div class="row">
+                    <span>@item.Alt</span>
+                    <span>@item.Path</span>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No images available</p>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Image[] ImageCollection { get; set; }
+}

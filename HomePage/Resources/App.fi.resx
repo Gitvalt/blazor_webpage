@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Lisää</value>
+  </data>
+  <data name="AlternativeName" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
   <data name="ChangeTheme" xml:space="preserve">
     <value>Vaihda teema</value>
+  </data>
+  <data name="Common" xml:space="preserve">
+    <value>Yleistä</value>
   </data>
   <data name="Company" xml:space="preserve">
     <value>Yritys</value>
   </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Yhteystiedot</value>
+  </data>
   <data name="ContentLoadingFailed" xml:space="preserve">
     <value>Sisällön lataaminen epäonnistui</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Päivämäärä</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Oletus</value>
   </data>
   <data name="Degree" xml:space="preserve">
     <value>Tutkinto</value>
@@ -138,11 +156,26 @@
   <data name="Education" xml:space="preserve">
     <value>Koulutus</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Sähköposti</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Tyhjä</value>
+  </data>
   <data name="En" xml:space="preserve">
     <value>Englanti</value>
   </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>Virhe on tapahtunut</value>
+  </data>
   <data name="Experience" xml:space="preserve">
     <value>Työkokemus</value>
+  </data>
+  <data name="ExperienceAndSchool" xml:space="preserve">
+    <value>Työkokemus ja koulutus</value>
+  </data>
+  <data name="False" xml:space="preserve">
+    <value>Epätosi</value>
   </data>
   <data name="Fi" xml:space="preserve">
     <value>Suomi</value>
@@ -150,11 +183,35 @@
   <data name="Gallery" xml:space="preserve">
     <value>Galleria</value>
   </data>
+  <data name="GroupSize" xml:space="preserve">
+    <value>Ryhmän koko</value>
+  </data>
+  <data name="Hyperlink" xml:space="preserve">
+    <value>Hyperlinkki</value>
+  </data>
+  <data name="HyperlinkPath" xml:space="preserve">
+    <value>Hyperlinkin polku</value>
+  </data>
+  <data name="HyperlinkTitle" xml:space="preserve">
+    <value>Hyperlinkin otsikko</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Kuvat</value>
+  </data>
+  <data name="Inspect" xml:space="preserve">
+    <value>Tutki</value>
+  </data>
+  <data name="IsIcon" xml:space="preserve">
+    <value>Onko ikoni</value>
+  </data>
   <data name="Link" xml:space="preserve">
     <value>Linkki</value>
   </data>
   <data name="LoadingFailed" xml:space="preserve">
     <value>Lataaminen epäonnistui</value>
+  </data>
+  <data name="LoadingPrompt" xml:space="preserve">
+    <value>Ladataan...</value>
   </data>
   <data name="Location" xml:space="preserve">
     <value>Sijainti</value>
@@ -162,8 +219,50 @@
   <data name="Mainpage" xml:space="preserve">
     <value>Pääsivu</value>
   </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Muokkaa</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
+  <data name="NoContentAvailable" xml:space="preserve">
+    <value>Sisältöä ei saatavilla</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>Ei löydetty</value>
+  </data>
+  <data name="OutsideSources" xml:space="preserve">
+    <value>Ulkoiset sivustot</value>
+  </data>
+  <data name="OutsideSourcesGuide" xml:space="preserve">
+    <value>Voit löytää minut myös muilta sivustoilta:</value>
+  </data>
+  <data name="OwnProfile" xml:space="preserve">
+    <value>Oma profiili</value>
+  </data>
+  <data name="PageFooterLabel" xml:space="preserve">
+    <value>Rakennettu Blazor, Bootstrap, JQuery ja FontAwesome -teknologioilla.</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>Sivua ei löydetty</value>
+  </data>
+  <data name="PageNotFoundPrompt" xml:space="preserve">
+    <value>Haettua sivua ei löydetty tai sitä ei ole olemassa.</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Polku</value>
+  </data>
+  <data name="PathToImage" xml:space="preserve">
+    <value>Polku kuvalle</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>Henkilökohtainen</value>
+  </data>
+  <data name="ProfileDescription" xml:space="preserve">
+    <value>Minä olen ohjelmoija keskisuomesta, joka pääsääntöisesti on keskittynyt monialustaisten mobiilisovellusten ja skaalattavien mikropalveluiden kehittämiseen Microsoft Service Fabric -teknologialla. Viimeistelin vuonna 2021 insinöörinopintoni Jyväskylän ammattikorkeakoulussa, jonka aikana toimin ohjelmoijana Iotas Oy:ssa. \r\nOhjelmoijana minulla on eniten osaamista Android ja iOS -mobiilisovelluksien rakentamisesta Xamarin Form -teknologialla ja REST-API rajapintojen rakentamisesta Service Fabric mikropalveluita käyttäen. Olen myös kehitellyt Xamarin Forms:illa Tizen ja Wear OS -käyttöjärjestelmä pohjaisille älykelloille sovelluksia.</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projektit</value>
   </data>
   <data name="School" xml:space="preserve">
     <value>Koulu</value>
@@ -174,13 +273,34 @@
   <data name="Skills" xml:space="preserve">
     <value>Taidot ja osaaminen</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Lähetä</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Tagi</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tagit</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Työnimike</value>
+  </data>
+  <data name="True" xml:space="preserve">
+    <value>Totta</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tyyppi</value>
   </data>
   <data name="UnexpectedErrorFormat" xml:space="preserve">
     <value>Odottamaton virhe: {0}</value>
   </data>
   <data name="UnexpectedErrorHasOccured" xml:space="preserve">
     <value>Odottamaton virhe on tapahtunut</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>Työ</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Vuosi</value>
   </data>
 </root>

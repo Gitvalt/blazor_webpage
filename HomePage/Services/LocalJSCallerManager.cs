@@ -44,20 +44,20 @@ namespace HomePage.Services
             await Runtime.InvokeAsync<string>("setLanguage", newLocale);
             logService?.Debug($"Changed locale. New locale is {newLocale}");
         }
-        
+
         public async Task SetAndRefreshLocale(string newLocale)
         {
             await SetLocale(newLocale);
             logService?.Debug($"Requesting window reload");
             await Runtime.InvokeAsync<string>("location.reload");
         }
-        
+
         public async Task SwitchTheme()
         {
             await Runtime.InvokeAsync<string>("switchTheme");
-            logService?.Debug($"Switching page theme"); 
+            logService?.Debug($"Switching page theme");
         }
-        
+
         public async Task<string> GetCurrentTheme()
         {
             var theme = await Runtime.InvokeAsync<string>("getCurrentTheme");
@@ -70,6 +70,15 @@ namespace HomePage.Services
             var theme = await Runtime.InvokeAsync<string>("readThemeRecord");
             logService?.Debug($"Found recorded theme: {theme}");
             return theme;
+        }
+
+        public async Task RenderReactComponent(string componentName, string destination)
+        {
+            await Runtime.InvokeVoidAsync("renderComponent", new object[]
+            {
+                componentName,
+                destination,
+            });
         }
 
         public async Task SetTheme(string theme)

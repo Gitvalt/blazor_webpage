@@ -1,0 +1,100 @@
+﻿@using System.Globalization;
+@using Microsoft.Extensions.Localization
+@using Services;
+
+@inject AppSettings appSettings
+@inject NavigationManager NavManager
+@inject IStringLocalizer<App> localizer
+@inject Services.LocalJSCallerManager locale_manager
+@inject IJSRuntime js_service
+@inject LogService logger
+
+<div class="custom_nav d-flex flex-row navbarButtons align-items-center">
+
+    <div class="container">
+        <div class="row">
+            <div class=" col">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-auto"><span @onclick="()=>OnNavButtonClicked(0)">@localizer["OwnProfile"]</span></div>
+                    <div class="col-auto"><span @onclick="()=>OnNavButtonClicked(1)">@localizer["ExperienceAndSchool"]</span></div>
+                    <div class="col-auto"><span @onclick="()=>OnNavButtonClicked(2)">@localizer["Skills"]</span></div>
+                    @if (appSettings.ShowProjects)
+                    {
+                        <div class="col-auto"><span @onclick="()=>OnNavButtonClicked(3)">@localizer["Projects"]</span></div>
+                    }
+                </div>
+            </div>
+
+            </div>
+            <div class="col-auto">
+
+            <i class="fa-regular fa-lightbulb cFloatMiddle" @onclick="OnThemeSwitch"></i>
+            </div>
+            <div class="navbarLanguageSelection col-auto">
+                <select class="locale_select" @bind="SelectedLocale">
+                    <option value="fi">@localizer["Fi"]</option>
+                    <option value="en">@localizer["En"]</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+
+    private bool _isDarkTheme { get; set; }
+    private string _locale { get; set; }
+    private string _selected { get; set; }
+
+    public string SelectedLocale
+    {
+        get => _locale;
+        set { OnLocaleChanged(value); }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var _theme = await locale_manager.GetRecordedTheme();
+
+        _isDarkTheme = _theme == "dark";
+        _locale = await locale_manager.GetLocale();
+    }
+
+    async void OnNavButtonClicked(int selection)
+    {
+        if (selection == 0)
+            NavManager.NavigateTo("/");
+        else if (selection == 2)
+            NavManager.NavigateTo("Skills");
+        else if (selection == 1)
+            NavManager.NavigateTo("Education");
+        else if (selection == 3)
+            NavManager.NavigateTo("Projects");
+    }
+
+    async void OnThemeSwitch()
+    {
+        await locale_manager.SwitchTheme();
+    }
+
+    async void OnLocaleChanged(string locale)
+    {
+        string language = "";
+
+        switch (locale)
+        {
+            case "en":
+                language = "en";
+                break;
+
+            default:
+            case "fi":
+                language = "fi";
+                break;
+        }
+
+        await locale_manager.SetAndRefreshLocale(language);
+    }
+} 

@@ -14,6 +14,11 @@ using HomePage.Services;
 
 namespace HomePage
 {
+    public class AppSettings
+    {
+        public bool ShowProjects { get; set; }
+    }
+
     public class Program
     {
         public static async Task Main(string[] args)
@@ -21,11 +26,16 @@ namespace HomePage
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
+            AppSettings appSettings = new AppSettings()
+            {
+                ShowProjects = false
+            };
+
             var httpClient = new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) };
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue("utf-16"));
-            builder.Services.AddScoped(sp => httpClient);
-            
+            builder.Services.AddSingleton(sp => httpClient);
+
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("fi-FI");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("fi-FI");
 
@@ -34,8 +44,10 @@ namespace HomePage
             builder.Services.AddSingleton<StringLocalizer<App>>();
             builder.Services.AddSingleton<LocalJSCallerManager>();
             builder.Services.AddSingleton<LogService>();
-            builder.Services.AddSingleton<ContentLocaleService>();
-            
+            builder.Services.AddSingleton<JsonContentLocalizationService>();
+            builder.Services.AddSingleton<ContentService>();
+            builder.Services.AddSingleton<AppSettings>(appSettings);
+
             var host = builder.Build();
 
             var logger = host.Services.GetService<LogService>();
@@ -45,7 +57,7 @@ namespace HomePage
                 // Call "getLanguage" js function on index page
                 var jsInterop = host.Services.GetRequiredService<IJSRuntime>();
                 var language = await jsInterop.InvokeAsync<string>("getLanguage");
-                
+
                 logger.Debug($"Found locale on startup: {language}");
 
                 var culture = new CultureInfo(language);
@@ -56,7 +68,7 @@ namespace HomePage
             {
                 logger.Error($"Fetching current localization from browser failed: {err.Message} {err.StackTrace}");
             }
-            
+
             await host.RunAsync();
         }
     }

@@ -1,0 +1,10 @@
+﻿@using Services
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<App> localizer
+
+<div class="custom_footer">
+    <div>
+        @localizer["PageFooterLabel"]
+    </div>
+</div>

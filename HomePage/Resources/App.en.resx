@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AlternativeName" xml:space="preserve">
+    <value>Alternative name</value>
+  </data>
   <data name="ChangeTheme" xml:space="preserve">
     <value>Change theme</value>
+  </data>
+  <data name="Common" xml:space="preserve">
+    <value>Common</value>
   </data>
   <data name="Company" xml:space="preserve">
     <value>Company</value>
   </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
   <data name="ContentLoadingFailed" xml:space="preserve">
     <value>Loading content has failed</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
   </data>
   <data name="Degree" xml:space="preserve">
     <value>Degree</value>
@@ -138,11 +156,26 @@
   <data name="Education" xml:space="preserve">
     <value>Education</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
   <data name="En" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>Error has occured</value>
+  </data>
   <data name="Experience" xml:space="preserve">
     <value>Experience</value>
+  </data>
+  <data name="ExperienceAndSchool" xml:space="preserve">
+    <value>Job experience and education</value>
+  </data>
+  <data name="False" xml:space="preserve">
+    <value>Tosi</value>
   </data>
   <data name="Fi" xml:space="preserve">
     <value>Finnish</value>
@@ -150,11 +183,35 @@
   <data name="Gallery" xml:space="preserve">
     <value>Gallery</value>
   </data>
+  <data name="GroupSize" xml:space="preserve">
+    <value>Group size</value>
+  </data>
+  <data name="Hyperlink" xml:space="preserve">
+    <value>Hyperlink</value>
+  </data>
+  <data name="HyperlinkPath" xml:space="preserve">
+    <value>Hyperlink path</value>
+  </data>
+  <data name="HyperlinkTitle" xml:space="preserve">
+    <value>Hyperlink title</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="Inspect" xml:space="preserve">
+    <value>Inspect</value>
+  </data>
+  <data name="IsIcon" xml:space="preserve">
+    <value>Is icon</value>
+  </data>
   <data name="Link" xml:space="preserve">
     <value>Link</value>
   </data>
   <data name="LoadingFailed" xml:space="preserve">
     <value>Loading has failed</value>
+  </data>
+  <data name="LoadingPrompt" xml:space="preserve">
+    <value>Loading...</value>
   </data>
   <data name="Location" xml:space="preserve">
     <value>Location</value>
@@ -162,8 +219,51 @@
   <data name="Mainpage" xml:space="preserve">
     <value>Mainpage</value>
   </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NoContentAvailable" xml:space="preserve">
+    <value>Content not available</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>Not found</value>
+  </data>
+  <data name="OutsideSources" xml:space="preserve">
+    <value>Outside sources</value>
+  </data>
+  <data name="OutsideSourcesGuide" xml:space="preserve">
+    <value>You can also find me from other websites:</value>
+  </data>
+  <data name="OwnProfile" xml:space="preserve">
+    <value>Own profile</value>
+  </data>
+  <data name="PageFooterLabel" xml:space="preserve">
+    <value>Powered by Blazor, Bootsraps, JQuery and FontAwesome.</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>Page not found</value>
+  </data>
+  <data name="PageNotFoundPrompt" xml:space="preserve">
+    <value>Searched page not found or does not exist.</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="PathToImage" xml:space="preserve">
+    <value>Path for image</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>Personal</value>
+  </data>
+  <data name="ProfileDescription" xml:space="preserve">
+    <value>I am a software developer from Central Finland who mainly focuses on creation of cross platform mobile applications and scalable microservices with Microsoft Service Fabric. I completed my engineering studies in 2021 at Jyvaskyla University of Applied science during which a worked as a programmer in Iotas Oy. \r\nAs a programmer I mostly have experience developing Android and iOS mobile applications with Xamarin Forms and cloud services they required by the mobile applications. I have also developed wearable applications using Xamarin for Tizen and Wear operation systems.
+</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projects</value>
   </data>
   <data name="School" xml:space="preserve">
     <value>School</value>
@@ -174,13 +274,34 @@
   <data name="Skills" xml:space="preserve">
     <value>Skills</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="True" xml:space="preserve">
+    <value>True</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="UnexpectedErrorFormat" xml:space="preserve">
     <value>Unexpected error: {0}</value>
   </data>
   <data name="UnexpectedErrorHasOccured" xml:space="preserve">
     <value>Unexpected error has occured</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>Work</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
   </data>
 </root>

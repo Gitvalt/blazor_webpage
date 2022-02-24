@@ -1,0 +1,40 @@
+﻿@using SharedModels
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<App> localizer
+
+@if (Educations?.Any() ?? false)
+{
+    <div class="profile_item">
+        <table class="table">
+            <thead>
+
+            <tr>
+                <th class="col-2">@localizer["Degree"]</th>
+                <th class="col-2">@localizer["School"]</th>
+                <th class="col-1">@localizer["Duration"]</th>
+                <th class="col-1">@localizer["Location"]</th>
+                <th class="col-3">@localizer["Description"]</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach (var item in (Educations?.OrderByDescending(i => i?.Order ?? 0).ToArray() ?? new Education[] { }).OrderBy(i => i.Order))
+            {
+                <tr>
+                    <td scope="row">@item.Degree</td>
+                    <td>@item.School</td>
+                    <td>@item.Duration</td>
+                    <td>@item.Location</td>
+                    <td>@item.Description</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public SharedModels.Education[] Educations { get; set; }
+
+}

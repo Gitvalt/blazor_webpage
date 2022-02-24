@@ -11,23 +11,18 @@ function setLanguage(value) {
 }
 
 function switchTheme() {
-    
-    if ($('html').hasClass("dark"))
-    {
+    if ($('html').hasClass("dark")) {
         setTheme("light");
     }
-    else if ($('html').hasClass("light"))
-    {
+    else if ($('html').hasClass("light")) {
         setTheme("dark");
     }
-    else
-    {
+    else {
         setTheme("dark");
     }
 }
 
-function getCurrentTheme()
-{
+function getCurrentTheme() {
     if ($('html').hasClass("dark")) {
         return "dark";
     } else if ($('html').hasClass("light")) {
@@ -70,4 +65,27 @@ function setTheme(themeClass) {
 
     $('html').addClass(newClass);
     window.localStorage[THEME] = newClass;
+}
+
+function renderComponent(requestedComponent, destinationRoot) {
+    if (!requestedComponent) {
+        console.error("Requested component not found from document");
+        return;
+    }
+
+    console.log(document);
+    var rootObj = document.getElementById(destinationRoot);
+    if (rootObj) {
+        console.log("Root found");
+        var myEleValue = myEle.value;
+
+        if (requestedComponent == "prj-gallery") {
+            console.log("Opening gallery");
+            RenderProjectGalleryView();
+        }
+    }
+    else {
+        console.error("Root element for component not found?");
+        return;
+    }
 }

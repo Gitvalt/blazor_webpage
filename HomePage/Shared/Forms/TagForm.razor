@@ -1,0 +1,107 @@
+﻿@using SharedModels
+@using Services
+@using Models;
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<App> localizer
+
+<div class="form-group project-construct-row">
+    <div class="row button-header-row">
+        <h2 class="col-auto">@localizer["Tags"]</h2>
+        <button class="col-auto btn btn-primary" hidden="@HideAdditionButton" @onclick="OnTagsClick">@(IsAddingTag ? "-" : "+")</button>
+    </div>
+
+    @if (IsAddingTag)
+    {
+        <div class="container imageContainer">
+
+            <div class="form-group input-group">
+                <span class="input-group-text">@localizer["Tag"]</span>
+                <input class="form-control" type="text" @bind-value="@CreatingTag" id="tagName" placeholder="@localizer["Tag"]" />
+            </div>
+
+            <button @onclick="OnAddTagClicked">@localizer["Submit"]</button>
+        </div>
+    }
+
+    @if (TagCollection?.Any() ?? false)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2" class="col">@localizer["Tag"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in TagCollection ?? new string[] { })
+                {
+                    <tr>
+                        <td scope="row">@item?.ToLower()</td>
+                        <td><button hidden="@HideAdditionButton" class="col-auto" @onclick=@(()=>OnRemoveTag(item))>-</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<string[]> OnTagCollectionUpdates { get; set; }
+
+    [Parameter]
+    public bool HideAdditionButton { get; set; }
+
+    [Parameter]
+    public string[] TagCollection { get; set; }
+
+    public bool IsAddingTag { get; set; }
+
+    public string CreatingTag { get; set; }
+
+    protected override void OnInitialized()
+    {
+        TagCollection = TagCollection ?? new string[] { };
+    }
+
+    public async void OnAddTagClicked()
+    {
+        if (string.IsNullOrEmpty(CreatingTag))
+            return;
+
+        var e = TagCollection?.ToList() ?? new List<string>();
+        if (e.Contains(CreatingTag))
+        {
+
+            return;
+        }
+        else
+        {
+            e.Add(CreatingTag);
+            TagCollection = e.ToArray();
+        }
+
+        CreatingTag = null;
+        IsAddingTag = false;
+        await OnTagCollectionUpdates.InvokeAsync(TagCollection);
+    }
+
+    public async void OnRemoveTag(string tag)
+    {
+
+        var e = TagCollection?.ToList() ?? new List<string>();
+
+        var old = e.FirstOrDefault(i => i == tag);
+        if (old != null)
+        {
+            e.Remove(old);
+            TagCollection = e.ToArray();
+            await OnTagCollectionUpdates.InvokeAsync(TagCollection);
+        }
+    }
+
+    public void OnTagsClick()
+    {
+        IsAddingTag = !IsAddingTag;
+    }
+}

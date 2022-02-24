@@ -1,0 +1,215 @@
+﻿@using HomePage.Models;
+@using SharedModels;
+@using Services;
+@using Forms;
+@using Microsoft.Extensions.Localization
+
+@inject LogService logger;
+@inject IStringLocalizer<App> localizer
+
+<div class="project-viewbox-subbox w-100">
+
+    @if (ViewModel?.Images?.Any() ?? false)
+    {
+        <div id="carouselExampleControls" class="carousel slide project-construct-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @for (int i = 0; i < ViewModel.Images.Length; i++)
+                {
+                    if (i == 0)
+                    {
+                        <div class="carousel-item active">
+                            <img src="@ViewModel.Images[i].Path" class="d-block w-100" alt="@ViewModel.Images[i].Alt">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <img src="@ViewModel.Images[i].Path" class="d-block w-100" alt="@ViewModel.Images[i].Alt">
+                        </div>
+                    }
+                }
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    }
+
+    <div class="form-group input-group project-construct-row">
+        <span class="input-group-text">@localizer["Title"]</span>
+        <input class="form-control" readonly="@InspectOnly" type="text" @bind="@ViewModel.Title" id="titlePlaceholder" placeholder="@localizer["Title"]" />
+    </div>
+
+    <div class="form-group input-group project-construct-row">
+        <span class="input-group-text">@localizer["Description"]</span>
+        <textarea class="form-control" readonly="@InspectOnly" id="descriptionPlaceholder" @bind="@ViewModel.Description" placeholder="@localizer["Description"]" rows="5" />
+    </div>
+
+    <div class="form-group input-group project-construct-row">
+        <span class="input-group-text">@localizer["Year"]</span>
+        <input class="form-control" readonly="@InspectOnly" type="date" @bind="@ViewModel.CreatedDate" placeholder="@localizer["Year"]" />
+    </div>
+
+    @if (InspectOnly)
+    {
+        <div class="form-group input-group hyperlink-viewbox project-construct-row">
+            <a href="@ViewModel.ExternalLink.Link">@ViewModel.ExternalLink.Title</a>
+        </div>
+    }
+    else
+    {
+        <div class="form-group input-group project-construct-row">
+            <span class="input-group-text">@localizer["HyperlinkTitle"]</span>
+            <input class="form-control" readonly="@InspectOnly" type="text" @bind-value="@_ProjectLink.Title" placeholder="@localizer["HyperlinkTitle"]" />
+        </div>
+
+        <div class="form-group input-group project-construct-row">
+            <span class="input-group-text">@localizer["HyperlinkPath"]</span>
+            <input class="form-control" readonly="@InspectOnly" type="url" @bind-value="@_ProjectLink.Link" placeholder="@localizer["HyperlinkPath"]" />
+        </div>
+    }
+
+    <div class="form-group input-group project-construct-row">
+
+        <span class="input-group-text">@localizer["Type"]</span>
+        @if (InspectOnly)
+        {
+            <input class="form-control" readonly type="text" value="@(_model.GetProjectTypes(SelectedProjectType).Value)" />
+        }
+        else
+        {
+            <select class="form-control" @bind="@SelectedProjectType">
+                @foreach (var item in _model.GetProjectTypes())
+                {
+                    <option value="@((int)item.Key)">@item.Value</option>
+                }
+            </select>
+        }
+    </div>
+
+    @if (SelectedProjectType == (int)ProjectType.School)
+    {
+        <div class="form-group input-group">
+            <span class="input-group-text">@localizer["GroupSize"]</span>
+            <input class="form-control" readonly="@InspectOnly" type="number" min="1" @bind-value="@_schoolDataModel.GroupSize" placeholder="1" />
+        </div>
+    }
+
+    <TagForm HideAdditionButton="@InspectOnly" TagCollection="@ViewModel.Tags" OnTagCollectionUpdates="OnTagsUpdated" />
+
+    <ImageForm HideAdditionButton="@InspectOnly" Images="@ViewModel.Images" OnImageCollectionUpdates="OnImagesUpdated" />
+
+    <button hidden="@InspectOnly" @onclick="SubmitClicked">@localizer["Submit"]</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public EventCallback<object> OnProfileSubmit { get; set; }
+
+    [Parameter]
+    public ProjectWrapper ViewModel { get => _wrapper; set => _wrapper = value ?? new ProjectWrapper(); }
+
+    [Parameter]
+    public bool IsModifying { get; set; }
+
+    [Parameter]
+    public bool InspectOnly { get; set; }
+
+    #region ProjectData
+
+    public int SelectedProjectType
+    {
+        get
+        {
+            return _selectedProjectType;
+        }
+        set
+        {
+            _selectedProjectType = value;
+            ViewModel.ProjectTypeID = value;
+        }
+    }
+
+    public ProjectWrapper.SchoolDataModel _schoolDataModel { get; set; } = new ProjectWrapper.SchoolDataModel() { };
+
+    public Hyperlink _ProjectLink
+    {
+        get => ViewModel?.ExternalLink;
+        set
+        {
+            ViewModel.ExternalLink = value ?? new Hyperlink();
+        }
+    }
+
+    #endregion
+
+    private ProjectWrapper _wrapper;
+    public int _selectedProjectType;
+    public ProjectsViewModel _model { get; set; }
+
+    public ProjectsViewModel.PageMode Mode;
+
+    protected override void OnInitialized()
+    {
+        _model = new ProjectsViewModel(localizer);
+
+        if (ViewModel != null)
+        {
+            ViewModel.ExternalLink = ViewModel.ExternalLink ?? new Hyperlink();
+        }
+        else
+        {
+            ViewModel = new ProjectWrapper();
+        }
+    }
+
+    public void Reset()
+    {
+
+    }
+
+    public void OnTagsUpdated(string[] updatedTagsCollection)
+    {
+        logger.Debug("Tags updated");
+        ViewModel.Tags = updatedTagsCollection;
+    }
+
+    public void OnImagesUpdated(Image[] updatedImageCollection)
+    {
+        logger.Debug("Images updated");
+        ViewModel.Images = updatedImageCollection;
+    }
+
+    public async void SubmitClicked()
+    {
+        logger.Debug("Submit project called");
+
+        if (string.IsNullOrEmpty(ViewModel?.Title))
+            return;
+
+        if (ViewModel.CreatedDate < new DateTime(1999, 1, 1) || ViewModel.CreatedDate > new DateTime(2100, 1, 1))
+            return;
+
+        logger.Debug("Validations completed");
+
+        object dataModel = ViewModel;
+        ViewModel.Data = null;
+
+        if (SelectedProjectType == (int)ProjectType.School)
+        {
+            ((ProjectWrapper)dataModel).SchoolParameters = _schoolDataModel ?? new ProjectWrapper.SchoolDataModel();
+        }
+
+        ((ProjectWrapper)dataModel).EncodeData();
+
+        logger.Debug("Invoke");
+        await OnProfileSubmit.InvokeAsync(dataModel);
+    }
+}

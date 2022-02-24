@@ -1,0 +1,14 @@
+﻿@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<App> localizer
+
+<div class="container" style="min-height: 200px; padding: 20px;">
+    <h2>@localizer["PageNotFound"]</h2>
+    <p>
+        @localizer["PageNotFoundPrompt"]
+    </p>
+</div>
+
+@code {
+
+}

@@ -26,9 +26,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A941801C-2EDD-488C-A4CB-126664EB80CC}
-		RESX_NeutralResourcesLanguage = fi-FI
-		RESX_SortFileContentOnSave = True
 		RESX_AutoCreateNewLanguageFiles = True
+		RESX_SortFileContentOnSave = True
+		RESX_NeutralResourcesLanguage = fi-FI
+		SolutionGuid = {A941801C-2EDD-488C-A4CB-126664EB80CC}
 	EndGlobalSection
 EndGlobal

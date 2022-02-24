@@ -1,18 +1,24 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-$light_border: #1f1f1f;
-$light_page_background: #ffffff;
-$light_navbar_color: #5c6b73;
-$light_navbar_button_color: #c2dfe3;
-$light_content_color: #c2dfe3;
-$light_font_color: #1f1f1f;
+$innerBorderSize: 0.5%;
 
-$dark_border: #1f1f1f;
-$dark_page_background: #1f1f1f;
-$dark_navbar_color: #5c6b73;
-$dark_navbar_button_color: #c2dfe3;
-$dark_content_color: #5c6b73;
-$dark_font_color: #e0fbfc;
+$light_border: #022B3A;
+$light_page_background: #BFDBF7;
+$light_navbar_color: #E1E5F2;
+$light_content_color: $light_navbar_color;
+$light_font_color: #454545;
+
+$dark_page_background: #22223B;
+$dark_border: #4a4e69;
+$dark_navbar_color: #9A8C98;
+$dark_content_color: $dark_navbar_color;
+$dark_font_color: #F8F5F4;
+
+$defaultHyperLink: darkblue;
+$defaultHyperHover: lightblue;
+$iconDefaultColor: $defaultHyperLink;
+$iconHoverColor: $defaultHyperHover;
+$nav_highlight: $defaultHyperHover;
 
 @mixin body {
     margin: 20px;
@@ -24,6 +30,7 @@ $dark_font_color: #e0fbfc;
     margin-right: 10%;
     display: block;
     float: left;
+    min-height: 50px;
 }
 
 @mixin custom_nav_button {
@@ -34,15 +41,20 @@ $dark_font_color: #e0fbfc;
 }
 
 @mixin custom_content {
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 1em;
-    padding-top: 1.5em;
+    width: 100% - ($innerBorderSize * 2);
+    margin: $innerBorderSize;
     display: block;
     float: left;
 }
 
+@mixin outer_border {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1em;
+    display: block;
+    float: left;
+}
 
 @mixin custom_footer {
     width: 80%;
@@ -55,7 +67,33 @@ $dark_font_color: #e0fbfc;
     float: left;
 }
 
+@mixin outerContainer {
+    margin: 0px 0px 0px 10px;
+    padding: 20px;
+}
+
+@mixin imageContainer {
+    padding: 20px;
+}
+
+@mixin project-viewbox-subbox {
+    padding: 10px;
+}
+
+.hyperlink-viewbox {
+    background: whitesmoke;
+    padding: 7px;
+    padding-left: 20px;
+}
+
 .dark {
+    a {
+        color: $defaultHyperLink;
+    }
+
+    a:hover {
+        color: $defaultHyperHover;
+    }
 
     body {
         @include body;
@@ -63,14 +101,45 @@ $dark_font_color: #e0fbfc;
         background-color: $dark_page_background;
     }
 
+    table {
+        color: $dark_font_color;
+    }
+
+    th {
+        color: $dark_font_color;
+    }
+
+    td {
+        color: $dark_font_color;
+    }
+
+    .project-viewbox-subbox {
+        @include project-viewbox-subbox;
+        border: 2px solid $dark_border;
+    }
+
     .custom_nav {
         @include custom_nav;
         background-color: $dark_navbar_color;
+        border: 1px solid $dark_border;
     }
 
     .custom_nav button {
         @include custom_nav_button;
-        background-color: $dark_navbar_button_color;
+    }
+
+    .outerContainer {
+        @include outerContainer;
+
+        hr {
+            border: 1px solid $dark_font_color;
+        }
+    }
+
+    .outer_border {
+        @include outer_border;
+        background-color: $dark_border;
+        border: 1px solid $dark_border;
     }
 
     .custom_content {
@@ -85,12 +154,37 @@ $dark_font_color: #e0fbfc;
         border: 1px solid $dark_border;
     }
 
+    .imageContainer {
+        @include imageContainer;
+        border: 3px solid $dark_border;
+    }
+
     .theme_button {
         background-color: $dark_content_color;
     }
 }
 
 .light {
+    a {
+        color: $defaultHyperLink;
+    }
+
+    a:hover {
+        color: $defaultHyperHover;
+    }
+
+    table {
+        color: $light_font_color;
+    }
+
+    th {
+        color: $light_font_color;
+    }
+
+    td {
+        color: $light_font_color;
+    }
+
     body {
         @include body;
         color: $light_font_color;
@@ -100,11 +194,17 @@ $dark_font_color: #e0fbfc;
     .custom_nav {
         @include custom_nav;
         background-color: $light_navbar_color;
+        border: 1px solid $light_border;
     }
 
     .custom_nav button {
         @include custom_nav_button;
-        background-color: $light_navbar_button_color;
+    }
+
+    .outer_border {
+        @include outer_border;
+        background-color: $light_border;
+        border: 1px solid $light_border;
     }
 
     .custom_content {
@@ -119,20 +219,113 @@ $dark_font_color: #e0fbfc;
         border: 1px solid $light_border;
     }
 
+    .outerContainer {
+        @include outerContainer;
+
+        hr {
+            border: 1px solid $light_font_color;
+        }
+    }
+
+    .project-viewbox-subbox {
+        @include project-viewbox-subbox;
+        border: 2px solid $light_border;
+    }
+
+    .imageContainer {
+        @include imageContainer;
+        border: 3px solid $light_border;
+    }
+
     .theme_button {
         background-color: $light_content_color;
     }
 }
 
+.button-header-row {
+    span {
+        margin-right: 20px;
+    }
+
+    button {
+    }
+}
+
+.project-construct-carousel {
+    max-width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+}
+
+.navbarButtons {
+    span:hover {
+        color: $nav_highlight;
+    }
+}
+
+.cFloatMiddle {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin: 1px;
+}
+
+.contactbox {
+}
+
+.td_first {
+    width: 200px;
+}
+
 h2 {
-    text-size-adjust:auto;
+    text-size-adjust: auto;
+}
+
+.project-construct-row {
+    margin-bottom: 20px;
+
+    table {
+        max-height: 200px;
+    }
+}
+
+.project-viewbox {
+    width: 65%;
+    float: left;
+
+    .row {
+        margin-bottom: 20px;
+    }
+}
+
+.edutableHeaderRow {
+    border-bottom: 1px solid $dark_border;
+
+    td {
+        border-right: 1px solid $dark_border;
+        padding-left: 5px;
+        font-weight: bold;
+    }
+}
+
+.edutableBorderRow {
+    td {
+        padding-left: 5px;
+        border-right: 1px solid $dark_border;
+    }
+}
+
+.navbarLanguageSelection {
+    display: block;
+    float: right;
 }
 
 .locale_select {
     height: 100%;
     padding: 0;
     margin: 0;
-    width: 200px;
+    width: 120px;
     align-self: center;
     display: flex;
 }
@@ -140,33 +333,54 @@ h2 {
 .profile_img {
     width: 100%;
     margin: auto;
-    float:left;
-    height:auto;
-    padding:0;
-    display:block;
+    float: left;
+    height: auto;
+    padding: 0;
+    display: block;
 }
 
 .small_logo {
     width: 50px;
     height: 50px;
-    color: darkcyan;
+    color: $iconDefaultColor;
 }
 
 .small_logo:hover {
-    color: darkblue;
+    color: $iconHoverColor;
 }
 
-.small_logo_container{
-   align-self:center;
-   display:block;
+.profileBox {
+    h1 {
+        width: 100%;
+    }
+
+    h2 {
+        width: 100%;
+    }
+
+    .container {
+        margin-bottom: 10px;
+    }
 }
+
+.custom-column {
+    .row {
+        margin-bottom: 20px;
+    }
+}
+
+.small_logo_container {
+    align-self: center;
+    display: block;
+}
+
 .small_logo_link {
     font-size: 50px;
 }
 
 .small_logo_title_v {
     text-align: center;
-    font-display:block;
+    font-display: block;
 }
 
 .profile_item {
@@ -177,7 +391,10 @@ h2 {
     margin-bottom: 20px;
 }
 
-.row_header {
-    font-weight:bold;
+.eduTable td {
+    padding-right: 2em;
 }
 
+.row_header {
+    font-weight: bold;
+}

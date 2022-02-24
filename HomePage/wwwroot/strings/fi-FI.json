@@ -9,7 +9,7 @@
     {
       "title": "Gitlab",
       "logo": {
-        "path": "fab fa-gitlab",
+        "path": "fa-brands fa-gitlab",
         "alt": "Gitlab",
         "is_icon": true,
         "link": "https://gitlab.com/gitvalt"
@@ -18,7 +18,7 @@
     {
       "title": "Github",
       "logo": {
-        "path": "fab fa-github",
+        "path": "fa-brands fa-github",
         "is_icon": true,
         "alt": "Github",
         "link": "https://github.com/gitvalt"
@@ -27,7 +27,7 @@
     {
       "title": "LinkedIn",
       "logo": {
-        "path": "fab fa-linkedin",
+        "path": "fa-brands fa-linkedin-in",
         "is_icon": true,
         "alt": "LinkedIn",
         "link": "https://fi.linkedin.com/in/valtteri-seuranen-mainpage"
@@ -40,14 +40,15 @@
       "values": [
         "ASP.NET",
         "Azure Service Fabric",
-        "React JS"
+        "React JS",
+        "Angular JS perusteet"
       ]
     },
     {
       "type": "Sulautettu ohjelmointi",
       "values": [
         "Android",
-        "Xamarin & Xamarin Forms",
+        "Xamarin & Xamarin Forms iOS ja Android",
         "Wear OS",
         "Tizen OS"
       ]
@@ -56,7 +57,7 @@
       "type": "Ohjelmointikielet",
       "values": [
         "C#",
-        "Go",
+        "Golang",
         "C",
         "Haskell -perusteet",
         "Javascript"
@@ -66,9 +67,15 @@
   "experiences": [
     {
       "company": "Iotas Oy",
-      "ends": 2021,
+      "ends": 2018,
       "starts": 2018,
       "title": "Harjoittelija"
+    },
+    {
+      "company": "Iotas Oy",
+      "ends": 2021,
+      "starts": 2018,
+      "title": "Osa-aikainen ohjelmoija"
     },
     {
       "company": "Iotas Oy",
@@ -103,95 +110,61 @@
       "school": "Jyväskylä Ammattikorkeakoulu (JAMK)"
     }
   ],
-  "Projects": [
+  "projects": [
     {
-      "Course": "Ei osana kurssia",
-      "desc": "Luotiin portfolio verkkosivu React JS komponenteista, jotka pakattiin tyylitiedostojen kanssa webpack:ia käyttäen. Verkkosivu luotiin paikaksi, josta aikaisempien töiden esittäminen olisi mahdollista.\nVerkkosivun tyyli luotiin SASS:illa, jotta css muuttujien käyttäminen olisi mahdollista kaikista yleisimmillä selaimilla.",
-      "DevGroupSize": "1",
-      "Header_Title": "Portfolio opiskelijasivu",
-      "HostSite": "Gitlab",
-      "Images": [
-        "assets/projects/student-portfolio-v4.png"
+      "title": "Blazor Portfolio",
+      "desc": "Microsoft Blazor:illa rakennettu portfolio verkkosivu. Omainaisuuksina lokalisaatio, tyyliteemat, ja piilotettu projektien lisäämisformi.",
+      "tags": [
+        "website",
+        "blazor"
       ],
-      "Link": "https://gitlab.com/gitvalt/PortfolioWebpage",
-      "Link_Title": "Portfolio verkkosivu",
-      "ProjectType": "Henkilökohtainen",
-      "YearCreated": "2018"
+      "created": "2022-02-23T00:00:00",
+      "typeid": 1,
+      "data": "{}",
+      "ext_link": {
+        "link": "https://gitlab.com/gitvalt/blazor_portfolio",
+        "title": "Gitlab.com"
+      }
     },
     {
-      "Course": "Ei osana kurssia",
-      "desc": "Kehitettiin pieni galleria react-komponentti portfoliota varten. Kehityksessä käytetty React, Bootstrap, Sass, Coffeescript...",
-      "DevGroupSize": "1",
-      "Header_Title": "Javascript, React galleria",
-      "HostSite": "Gitlab",
-      "Images": [
-        "assets/projects/gallery_js.png"
+      "title": "Vanha Javascript Portfolio",
+      "desc": "Vanha Javascriptilla ja React:illa rakennettu portfolio verkkosivu",
+      "tags": [
+        "website",
+        "js",
+        "react"
       ],
-      "Link": "https://gitlab.com/gitvalt/JavascriptGallery",
-      "Link_Title": "Gallery js",
-      "ProjectType": "Henkilökohtainen",
-      "YearCreated": "2018"
+      "created": "2018-01-01T00:00:00",
+      "typeid": 1,
+      "data": "{}",
+      "ext_link": {
+        "link": "https://gitlab.com/gitvalt/PortfolioWebpage",
+        "title": "Gitlab.com"
+      }
     },
     {
-      "Course": "Sulautettu ohjelmointi",
-      "desc": "Kehitetty C:llä robottiautoon ohjain piirilevyn hallitsemiseksi",
-      "DevGroupSize": "2",
-      "Header_Title": "Sulautettu ohjelmointi: robottiauto",
-      "HostSite": "Gitlab",
-      "Images": [
-        "assets/projects/RoboCar.jpg"
+      "title": "AMK-opinnäytetyö",
+      "desc": "Opinnäytetyö kirjoitettuna vuonna 2020 - 2021 osana Jyväskylän ammattikorkeakoulun tieto- ja viestintätekniikan insinööriopintoja. Työ käsittelee älykellojen käyttämistä käyttäjän sijainnin ja hyvinvointitietojen ajoitettuun tutkimiseen ja mahdollisten heikkouksien havaitsemiseksi. Työ keskittyy Xamarin Forms -platformiin, jota suoritetaan Wear OS -käyttöjärjestelmään.",
+      "tags": [
+        "amk",
+        "wearable",
+        "thesis"
       ],
-      "Link": "https://gitlab.com/gitvalt/robottiauto",
-      "Link_Title": "Robottiauto ohjain",
-      "ProjectType": "Harjoitustyö",
-      "YearCreated": "2017"
-    },
-    {
-      "Course": "Web ohjelmointi & Web palvelinohjelmointi",
-      "desc": "Verkkokalenteri harjoitustyö 'Webpalvelinohjelmointi' kurssia varten.",
-      "DevGroupSize": "3",
-      "Header_Title": "Javascript Verkkokalenteri",
-      "HostSite": "Github",
-      "Images": [],
-      "Link": "https://github.com/Gitvalt/Webpalvelinharjoitustyo",
-      "Link_Title": "Verkkokalenteri",
-      "ProjectType": "Harjoitustyö",
-      "YearCreated": "2016"
-    },
-    {
-      "Course": "Mobiili ohjelmointi",
-      "desc": "Luotiin pieni mobiili aplikaatio Appcelerator Titaniumilla.",
-      "DevGroupSize": "2",
-      "Header_Title": "Appcelerator titanium tutkimusprojekti",
-      "HostSite": "Github",
-      "Images": [
-        "assets/projects/titanium_0.png",
-        "assets/projects/titanium_1.png",
-        "assets/projects/titanium_2.png",
-        "assets/projects/titanium_3.png"
+      "created": "2021-01-06T00:00:00",
+      "typeid": 3,
+      "project_images": [
+        {
+          "path": "./images/profile.jpg",
+          "alt": "asdasd",
+          "is_icon": false,
+          "link": null
+        }
       ],
-      "Link": "https://github.com/Gitvalt/Appcelerator_Titanium_Demo",
-      "Link_Title": "Titanium mobiili tutkimus",
-      "ProjectType": "Tutkimustyö",
-      "YearCreated": "2017"
-    },
-    {
-      "Course": "Android ohjelmointi & Mobiiliprojekti",
-      "desc": "Luotiin Android sovellus, joka käyttää puhelimen bluetooth-yhteyttä ulkoisen valokuvakehyksen hallitsemiseen. Valokuvakehys ohjelmoitu Python-ohjelmointikielellä.",
-      "DevGroupSize": "2",
-      "Header_Title": "Android bluetooth valokuvakehys",
-      "HostSite": "Github",
-      "Images": [
-        "assets/projects/photoframe_0.png",
-        "assets/projects/photoframe_1.png",
-        "assets/projects/photoframe_2.png",
-        "assets/projects/photoframe_3.png",
-        "assets/projects/photoframe_4.png"
-      ],
-      "Link": "https://github.com/Gitvalt/Bluetooth_Mobile_Project",
-      "Link_Title": "Bluetooth valokuvakehys",
-      "ProjectType": "Harjoitustyö",
-      "YearCreated": "2017"
+      "data": "{\"school\":{\"group_size\":1}}",
+      "ext_link": {
+        "link": "https://www.theseus.fi/handle/10024/502949",
+        "title": "Käyttöönotto ja sijainnin paikannus Android älykellossa"
+      }
     }
   ]
 }
